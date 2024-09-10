@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://b7c73f0eerqb8"]
+[gd_scene load_steps=4 format=3 uid="uid://b7c73f0eerqb8"]
 
 [ext_resource type="Shader" path="res://RootScene.gdshader" id="1_vwtji"]
+[ext_resource type="Texture2D" uid="uid://d2xji1eyvs0cv" path="res://circle.png" id="2_xc8lc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ui0b5"]
 shader = ExtResource("1_vwtji")
@@ -8,6 +9,7 @@ shader = ExtResource("1_vwtji")
 [node name="Node2D" type="Node2D"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_ui0b5")
@@ -16,3 +18,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Player" type="Node2D" parent="."]
+
+[node name="PlayerSprite" type="Sprite2D" parent="Player"]
+texture = ExtResource("2_xc8lc")
+
+[node name="Camera2D" type="Camera2D" parent="."]
