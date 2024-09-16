@@ -17,4 +17,9 @@ func _physics_process(delta: float) -> void:
 	if Time.get_unix_time_from_system() >= next_time_to_spawn:
 		var new_obstacle := obstacle_scene.instantiate()
 		target_node.add_child(new_obstacle)
+		
+		# randomize angle of obstacle
+		var random_angle := randf_range(0, 2 * PI)
+		new_obstacle.rotation = random_angle
+		
 		next_time_to_spawn = Time.get_unix_time_from_system() + (1.0/spawn_rate)
