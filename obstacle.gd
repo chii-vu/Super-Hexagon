@@ -8,6 +8,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
+	
 	var shrink_speed: float = 10.0
 	$CollisionPolygon2D.scale -= Vector2.ONE * shrink_speed*delta
 	

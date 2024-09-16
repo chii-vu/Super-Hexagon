@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://b7c73f0eerqb8"]
+[gd_scene load_steps=8 format=3 uid="uid://b7c73f0eerqb8"]
 
+[ext_resource type="Script" path="res://spawn_manager.gd" id="1_1dutw"]
 [ext_resource type="Shader" path="res://RootScene.gdshader" id="1_vwtji"]
 [ext_resource type="Script" path="res://player.gd" id="2_rvhsp"]
 [ext_resource type="Texture2D" uid="uid://d2xji1eyvs0cv" path="res://circle.png" id="2_xc8lc"]
-[ext_resource type="Script" path="res://obstacle.gd" id="4_3awyw"]
+[ext_resource type="PackedScene" uid="uid://da5yiv4noigda" path="res://obstacle.tscn" id="5_802vb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ui0b5"]
 shader = ExtResource("1_vwtji")
@@ -12,6 +13,11 @@ shader = ExtResource("1_vwtji")
 radius = 16.0
 
 [node name="Node2D" type="Node2D"]
+
+[node name="Spawn Manager" type="Node" parent="." node_paths=PackedStringArray("target_node")]
+script = ExtResource("1_1dutw")
+obstacle_scene = ExtResource("5_802vb")
+target_node = NodePath("..")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
@@ -36,14 +42,6 @@ texture = ExtResource("2_xc8lc")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/PlayerSprite/Area2D"]
 shape = SubResource("CircleShape2D_goaev")
 
-[node name="Obstacle" type="AnimatableBody2D" parent="."]
-script = ExtResource("4_3awyw")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Obstacle"]
-polygon = PackedVector2Array(-37, -73, -63, -87, -107, 0, -59, 95, 59, 95, 107, 0, 64, -87, 64, -87, 37, -73, 73, 0, 41, 65, -41, 65, -73, 0, -37, -73)
-
-[node name="Line2D" type="Line2D" parent="Obstacle/CollisionPolygon2D"]
-points = PackedVector2Array(-50, -80, -90, 0, -50, 80, 50, 80, 90, 0, 50, -80)
-width = 30.0
+[node name="Obstacle" parent="." instance=ExtResource("5_802vb")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
