@@ -5,11 +5,13 @@ class_name Obstacle
 func _ready() -> void:
 	$CollisionPolygon2D.scale = Vector2.ONE*10.0
 
-
+func _process(delta: float) -> void:
+	pass
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	
-	var shrink_speed: float = 10.0
+	var shrink_speed: float = 3.0
 	$CollisionPolygon2D.scale -= Vector2.ONE * shrink_speed*delta
 	
 	# once tiny, delete
